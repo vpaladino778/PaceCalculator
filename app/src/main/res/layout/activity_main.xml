@@ -33,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Calculate Distance"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/calc_distance_button"/>
 
         <!-- Calculate Split -->
         <LinearLayout
@@ -76,7 +77,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Calculate Split"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/calc_split_button"/>
 
     <!-- Time -->
     <LinearLayout
@@ -95,6 +97,7 @@
             android:layout_height="wrap_content"
             android:maxLength="2"
             android:inputType="number"
+            android:id="@+id/time_hours"
             android:hint="00"/>
         <TextView
             android:layout_width="wrap_content"
@@ -105,6 +108,7 @@
             android:layout_height="wrap_content"
             android:maxLength="2"
             android:inputType="number"
+            android:id="@+id/time_minutes"
             android:hint="00"/>
         <TextView
             android:layout_width="wrap_content"
@@ -115,6 +119,7 @@
             android:layout_height="wrap_content"
             android:hint="00.0"
             android:inputType="number"
+            android:id="@+id/time_seconds"
             android:maxLength="4"/>
         <TextView
             android:layout_width="wrap_content"
@@ -126,7 +131,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calculate Time"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/calc_time_button"/>
 
 
     <Button
@@ -134,5 +140,6 @@
         android:layout_height="wrap_content"
         android:text="Clear Calculator"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:id="@+id/clear_calc_button"/>
 </LinearLayout>

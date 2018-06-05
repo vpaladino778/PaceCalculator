@@ -25,5 +25,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getViews(); //Retrieve layout instances
+    }
+
+    /**
+     * Instantiates all member variables
+     */
+    public void getViews(){
+        distanceText = (EditText) findViewById(R.id.et_distance);
+        splitMinutesText = (EditText) findViewById(R.id.split_minutes);
+        splitSecondsText = (EditText) findViewById(R.id.split_seconds);
+        timeHoursText = (EditText) findViewById(R.id.time_hours);
+        timeMinutesText = (EditText) findViewById(R.id.time_minutes);
+        timeSecondsText = (EditText) findViewById(R.id.time_seconds);
+
+        //Buttons
+        calcDistanceButton = (Button) findViewById(R.id.calc_distance_button);
+        calcSplitButton = (Button) findViewById(R.id.calc_split_button);
+        calcTimeButton = (Button) findViewById(R.id.calc_time_button);
+        clearCalcButton = (Button) findViewById(R.id.clear_calc_button);
     }
 }
