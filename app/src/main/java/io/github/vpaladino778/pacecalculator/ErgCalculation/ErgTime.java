@@ -4,15 +4,15 @@ public class ErgTime {
 
 
     private int minutes;
-    private int seconds;
+    private double seconds;
 
-    public ErgTime(int hours, int minutes, int seconds){
+    public ErgTime(int hours, int minutes, double seconds){
         this.minutes = minutes;
         this.minutes += (hours * 60); //Convert hours to minutes
         this.seconds = seconds;
     }
 
-    public ErgTime(int min, int sec){
+    public ErgTime(int min, double sec){
         minutes = min;
         seconds = sec;
     }
@@ -22,7 +22,7 @@ public class ErgTime {
         return (minutes%60);
     }
 
-    public int getSeconds() {
+    public double getSeconds() {
         return seconds;
     }
 
@@ -37,7 +37,7 @@ public class ErgTime {
     }
 
     //Returns total time in minutes
-    public double getTotalMinutes(){
+    public double getTotalTime(){
         double decimalSeconds = seconds/60;
         //Rounds seconds to 2 decimal places
         decimalSeconds = (double) Math.round(decimalSeconds * 100) / 100;

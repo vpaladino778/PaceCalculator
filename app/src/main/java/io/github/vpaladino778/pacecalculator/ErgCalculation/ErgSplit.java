@@ -22,4 +22,8 @@ public class ErgSplit {
     public int getMinutes() {
         return minutes;
     }
+
+    public double getTotalSeconds(){
+        return (minutes * 60) + seconds;
+    }
 }

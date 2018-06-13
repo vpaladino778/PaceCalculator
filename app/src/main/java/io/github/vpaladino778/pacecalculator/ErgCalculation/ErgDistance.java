@@ -8,9 +8,6 @@ public class ErgDistance {
         this.meters = meters;
     }
 
-
-
-
     public int getMeters() {
         return meters;
     }
