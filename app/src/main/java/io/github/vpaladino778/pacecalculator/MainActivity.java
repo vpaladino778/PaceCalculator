@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgDistance;
+import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgSplit;
+import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgTime;
+
 public class MainActivity extends AppCompatActivity{
 
     private EditText distanceText;
@@ -20,6 +24,10 @@ public class MainActivity extends AppCompatActivity{
     private Button calcTimeButton;
     private Button clearCalcButton;
 
+
+    private ErgSplit ergSplit;
+    private ErgTime ergTime;
+    private ErgDistance ergDistance;
 
 
     @Override
@@ -44,6 +52,7 @@ public class MainActivity extends AppCompatActivity{
                     break;
 
                 case R.id.clear_calc_button:
+                    clearCalculator();
                     break;
                 default:
                     break;
@@ -68,15 +77,26 @@ public class MainActivity extends AppCompatActivity{
         calcTimeButton = (Button) findViewById(R.id.calc_time_button);
         clearCalcButton = (Button) findViewById(R.id.clear_calc_button);
 
+        ergSplit = new ErgSplit(splitMinutesText,splitSecondsText);
+        ergTime = new ErgTime(timeHoursText,timeMinutesText,timeSecondsText);
+        ergDistance = new ErgDistance(distanceText);
+
         //Attach clickListener
         calcDistanceButton.setOnClickListener(onClickListener);
         calcSplitButton.setOnClickListener(onClickListener);
         calcTimeButton.setOnClickListener(onClickListener);
         clearCalcButton.setOnClickListener(onClickListener);
 
+
     }
 
     public void calcDistance(){
 
+    }
+
+    public void clearCalculator(){
+        ergDistance.reset();
+        ergSplit.reset();
+        ergTime.reset();
     }
 }

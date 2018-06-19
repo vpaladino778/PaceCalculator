@@ -22,6 +22,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:hint="0"
+                android:inputType="number"
                 android:id="@+id/et_distance"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -136,10 +137,10 @@
 
 
     <Button
+        android:id="@+id/clear_calc_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear Calculator"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:id="@+id/clear_calc_button"/>
+        android:text="Clear Calculator" />
 </LinearLayout>
