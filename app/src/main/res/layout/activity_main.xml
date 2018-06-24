@@ -1,146 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-        <!-- Calculate Distance -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:padding="5dp"   >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Distance:"/>
-            <EditText
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:hint="0"
-                android:inputType="number"
-                android:id="@+id/et_distance"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="meters"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calculate Distance"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/calc_distance_button"/>
-
-        <!-- Calculate Split -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:padding="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:text="500m Split:" />
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minEms="1"
-                android:maxEms="1"
-                android:inputType="number"
-                android:hint="0"
-                android:id="@+id/split_minutes"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=":"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="00.0"
-                android:inputType="numberDecimal"
-                android:maxLength="4"
-                android:id="@+id/split_seconds"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="seconds"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calculate Split"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/calc_split_button"/>
-
-    <!-- Time -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:padding="5dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:text="Time:"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLength="2"
-            android:inputType="number"
-            android:id="@+id/time_hours"
-            android:hint="00"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLength="2"
-            android:inputType="number"
-            android:id="@+id/time_minutes"
-            android:hint="00"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="00.0"
-            android:inputType="number"
-            android:id="@+id/time_seconds"
-            android:maxLength="4"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="seconds"/>
-    </LinearLayout>
-
-    <Button
+    <!-- Calculate Distance -->
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Distance:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_distance"
+        app:layout_constraintEnd_toStartOf="@+id/et_distance"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="0"
+        android:inputType="number"
+        android:minEms="7"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="meters"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_distance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/et_distance" />
+
+
+    <Button
+        android:id="@+id/calc_distance_button"
+        android:layout_width="173dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Calculate Distance"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/et_distance" />
+
+    <!-- Calculate Split -->
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:inputType="number"
+        android:text="500m Split:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_split"
+        app:layout_constraintEnd_toStartOf="@+id/et_split"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_split"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="time"
+        android:text="00:00.00"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/calc_distance_button" />
+
+    <Button
+        android:id="@+id/calc_split_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Calculate Split"
+        app:layout_constraintEnd_toEndOf="@+id/calc_distance_button"
+        app:layout_constraintStart_toStartOf="@+id/calc_distance_button"
+        app:layout_constraintTop_toBottomOf="@+id/et_split" />
+
+    <!-- Time -->
+
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:inputType="number"
+        android:text="Time:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_time"
+        app:layout_constraintEnd_toStartOf="@+id/et_time"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/calc_time_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Calculate Time"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/calc_time_button"/>
+        app:layout_constraintBottom_toTopOf="@+id/clear_calc_button"
+        app:layout_constraintEnd_toEndOf="@+id/calc_split_button"
+        app:layout_constraintStart_toStartOf="@+id/calc_split_button"
+        app:layout_constraintTop_toBottomOf="@+id/calc_split_button" />
 
 
     <Button
         android:id="@+id/clear_calc_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:text="Clear Calculator" />
-</LinearLayout>
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Clear Calculator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="textPersonName"
+        android:text="00:00.00"
+        app:layout_constraintEnd_toEndOf="@+id/et_split"
+        app:layout_constraintTop_toBottomOf="@+id/calc_split_button" />
+
+</android.support.constraint.ConstraintLayout>

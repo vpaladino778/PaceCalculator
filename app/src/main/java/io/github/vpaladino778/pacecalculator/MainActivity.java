@@ -1,5 +1,6 @@
 package io.github.vpaladino778.pacecalculator;
 
+import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,15 +10,14 @@ import android.widget.EditText;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgDistance;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgSplit;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgTime;
+import io.github.vpaladino778.pacecalculator.Fragments.SplitTimeDialogFragment;
 
 public class MainActivity extends AppCompatActivity{
 
     private EditText distanceText;
-    private EditText splitMinutesText;
-    private EditText splitSecondsText;
-    private EditText timeHoursText;
-    private EditText timeMinutesText;
-    private EditText timeSecondsText;
+    private EditText splitText;
+    private EditText timeText;
+
 
     private Button calcDistanceButton;
     private Button calcSplitButton;
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getViews(); //Retrieve layout instances
-
     }
 
 
@@ -54,6 +53,9 @@ public class MainActivity extends AppCompatActivity{
                 case R.id.clear_calc_button:
                     clearCalculator();
                     break;
+                case R.id.et_split:
+                    showSplitDialog();
+                    break;
                 default:
                     break;
             }
@@ -65,11 +67,9 @@ public class MainActivity extends AppCompatActivity{
      */
     public void getViews(){
         distanceText = (EditText) findViewById(R.id.et_distance);
-        splitMinutesText = (EditText) findViewById(R.id.split_minutes);
-        splitSecondsText = (EditText) findViewById(R.id.split_seconds);
-        timeHoursText = (EditText) findViewById(R.id.time_hours);
-        timeMinutesText = (EditText) findViewById(R.id.time_minutes);
-        timeSecondsText = (EditText) findViewById(R.id.time_seconds);
+        splitText = (EditText) findViewById(R.id.et_split);
+        timeText = (EditText) findViewById(R.id.et_time);
+
 
         //Buttons
         calcDistanceButton = (Button) findViewById(R.id.calc_distance_button);
@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity{
         calcTimeButton = (Button) findViewById(R.id.calc_time_button);
         clearCalcButton = (Button) findViewById(R.id.clear_calc_button);
 
-        ergSplit = new ErgSplit(splitMinutesText,splitSecondsText);
-        ergTime = new ErgTime(timeHoursText,timeMinutesText,timeSecondsText);
+        //ergSplit = new ErgSplit(splitMinutesText,splitSecondsText);
+       // ergTime = new ErgTime(timeHoursText,timeMinutesText,timeSecondsText);
         ergDistance = new ErgDistance(distanceText);
 
         //Attach clickListener
@@ -86,12 +86,19 @@ public class MainActivity extends AppCompatActivity{
         calcSplitButton.setOnClickListener(onClickListener);
         calcTimeButton.setOnClickListener(onClickListener);
         clearCalcButton.setOnClickListener(onClickListener);
+        splitText.setOnClickListener(onClickListener);
 
 
     }
 
     public void calcDistance(){
 
+}
+
+    public void showSplitDialog(){
+        FragmentManager manager = getFragmentManager();
+        SplitTimeDialogFragment splitDialog = new SplitTimeDialogFragment();
+        splitDialog.show(manager,"SplitTimeDialogFragment");
     }
 
     public void clearCalculator(){
