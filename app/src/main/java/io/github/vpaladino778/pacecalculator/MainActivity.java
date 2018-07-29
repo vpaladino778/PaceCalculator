@@ -12,7 +12,7 @@ import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgSplit;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgTime;
 import io.github.vpaladino778.pacecalculator.Fragments.SplitTimeDialogFragment;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements SplitTimeDialogFragment.OnInputListener{
 
     private EditText distanceText;
     private EditText splitText;
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity{
         //ergSplit = new ErgSplit(splitMinutesText,splitSecondsText);
        // ergTime = new ErgTime(timeHoursText,timeMinutesText,timeSecondsText);
         ergDistance = new ErgDistance(distanceText);
+        ergSplit = new ErgSplit(splitText);
 
         //Attach clickListener
         calcDistanceButton.setOnClickListener(onClickListener);
@@ -97,13 +98,23 @@ public class MainActivity extends AppCompatActivity{
 
     public void showSplitDialog(){
         FragmentManager manager = getFragmentManager();
-        SplitTimeDialogFragment splitDialog = new SplitTimeDialogFragment();
+        SplitTimeDialogFragment splitDialog = SplitTimeDialogFragment.newInstance("Enter Split:");
         splitDialog.show(manager,"SplitTimeDialogFragment");
+    }
+
+    public void showTimeDialog(){
+        FragmentManager manager = getFragmentManager();
+        //TODO: Implement showTimeDialog
     }
 
     public void clearCalculator(){
         ergDistance.reset();
         ergSplit.reset();
         ergTime.reset();
+    }
+
+    @Override
+    public void sendInput(String time) {
+        splitText.setText(time);
     }
 }

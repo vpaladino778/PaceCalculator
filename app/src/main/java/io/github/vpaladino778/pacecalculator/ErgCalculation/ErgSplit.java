@@ -9,25 +9,40 @@ import android.widget.TextView;
  */
 public class ErgSplit {
 
-    private EditText minutesText;
-    private EditText secondsText;
+    private EditText splitText;
 
     private int minutes;
     private double seconds;
 
-    public ErgSplit(EditText minutesText, EditText secondsText){
-        this.minutesText = minutesText;
-        this.secondsText = secondsText;
+    public ErgSplit(EditText splitText){
+        this.splitText = splitText;
         reset();
     }
 
+    /**
+     * Parses a time string into an ErgSplit object
+     * @return True if string was parsed correctly, false if there was an error
+     */
+    public boolean parseTimeString(String timeString){
+        String[] timeSplit = timeString.split(":"); // Splits (timeSplit[0]) minutes from seconds (timeSplit[1])
+        if(timeSplit.length > 2)
+            return false;
+
+        try {
+            setMinutes(Integer.parseInt(timeSplit[0]));
+            setSeconds(Double.parseDouble(timeSplit[1]));
+        }catch(NumberFormatException e){
+            e.printStackTrace();
+            return false;
+        }
+    return true;
+    }
+
     public double getSeconds() {
-        seconds = Double.parseDouble(secondsText.getText().toString());
         return seconds;
     }
 
     public int getMinutes() {
-        minutes = Integer.getInteger(minutesText.getText().toString());
         return minutes;
     }
 
@@ -36,8 +51,8 @@ public class ErgSplit {
      * @param s Seconds value
      */
     public void setSeconds(Double s){
-        secondsText.setText(s.toString(), TextView.BufferType.EDITABLE);
         seconds = s;
+        updateSplitText();
     }
 
     /**
@@ -45,10 +60,13 @@ public class ErgSplit {
      * @param m Minutes value
      */
     public void setMinutes(int m){
-        minutesText.setText("" + m,TextView.BufferType.EDITABLE);
         minutes = m;
+        updateSplitText();
     }
 
+    public void updateSplitText(){
+        splitText.setText(getMinutes() + ":" + getSeconds());
+    }
     public double getTotalSeconds(){
         return (getMinutes() * 60) + getSeconds();
     }
@@ -56,5 +74,6 @@ public class ErgSplit {
     public void reset(){
         setMinutes(0);
         setSeconds(0.0);
+        updateSplitText();
     }
 }
