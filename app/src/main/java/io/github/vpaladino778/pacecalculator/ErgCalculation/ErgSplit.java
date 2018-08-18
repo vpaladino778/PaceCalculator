@@ -3,6 +3,8 @@ package io.github.vpaladino778.pacecalculator.ErgCalculation;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents the users 500m split time.
  * Allows for conversion from ErgSplit to ErgTime and ErgDistance
@@ -65,15 +67,16 @@ public class ErgSplit {
     }
 
     public void updateSplitText(){
-        splitText.setText(getMinutes() + ":" + getSeconds());
+        DecimalFormat df = new DecimalFormat("00.0");
+        splitText.setText(getMinutes() + ":" + df.format(getSeconds()));
     }
     public double getTotalSeconds(){
         return (getMinutes() * 60) + getSeconds();
     }
 
     public void reset(){
-        setMinutes(0);
-        setSeconds(0.0);
+        setMinutes(1);
+        setSeconds(00.0);
         updateSplitText();
     }
 }

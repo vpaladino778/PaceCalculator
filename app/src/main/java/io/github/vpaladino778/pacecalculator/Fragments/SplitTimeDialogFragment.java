@@ -32,6 +32,15 @@ public class SplitTimeDialogFragment extends DialogFragment {
         SplitTimeDialogFragment splitFrag = new SplitTimeDialogFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
+        args.putString("timeString","2:00.0");
+        splitFrag.setArguments(args);
+        return splitFrag;
+    }
+    public static SplitTimeDialogFragment newInstance(String title, String timeString) {
+        SplitTimeDialogFragment splitFrag = new SplitTimeDialogFragment();
+        Bundle args = new Bundle();
+        args.putString("title", title);
+        args.putString("timeString",timeString);
         splitFrag.setArguments(args);
         return splitFrag;
     }
@@ -48,7 +57,6 @@ public class SplitTimeDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //TODO: Save dialog information
                         mOnInputListener.sendInput(getTimeString());
                     }
                 })
@@ -62,7 +70,9 @@ public class SplitTimeDialogFragment extends DialogFragment {
                 });
 
         Dialog dialog = builder.create();
+        String timeString = getArguments().getString("timeString");
         onDialogCreated(dialogView);
+        setValue(timeString);
         return dialog;
     }
 
@@ -123,7 +133,7 @@ public class SplitTimeDialogFragment extends DialogFragment {
      */
     public boolean setValue(String timeString){
         String[] timeSplit = timeString.split(":"); // Splits (timeSplit[0]) minutes from seconds (timeSplit[1])
-        String[] secondsDecimal = timeSplit[1].split("."); //Splits 00.0 into 2 separate numbers
+        String[] secondsDecimal = timeSplit[1].split("\\."); //Splits 00.0 into 2 separate numbers
         if(timeSplit.length > 2 )
             return false;
 
@@ -136,5 +146,15 @@ public class SplitTimeDialogFragment extends DialogFragment {
             return false;
         }
     return true;
+    }
+
+    public void setMinutePicker(int min){
+        minutePicker.setValue(min);
+    }
+    public void setSecondsPicker(int sec){
+        secondsPicker.setValue(sec);
+    }
+    public void setDecimalPicker(int dec){
+        decimalPicker.setValue(dec);
     }
 }

@@ -70,15 +70,12 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
         splitText = (EditText) findViewById(R.id.et_split);
         timeText = (EditText) findViewById(R.id.et_time);
 
-
         //Buttons
         calcDistanceButton = (Button) findViewById(R.id.calc_distance_button);
         calcSplitButton = (Button) findViewById(R.id.calc_split_button);
         calcTimeButton = (Button) findViewById(R.id.calc_time_button);
         clearCalcButton = (Button) findViewById(R.id.clear_calc_button);
 
-        //ergSplit = new ErgSplit(splitMinutesText,splitSecondsText);
-       // ergTime = new ErgTime(timeHoursText,timeMinutesText,timeSecondsText);
         ergDistance = new ErgDistance(distanceText);
         ergSplit = new ErgSplit(splitText);
 
@@ -98,8 +95,10 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
 
     public void showSplitDialog(){
         FragmentManager manager = getFragmentManager();
-        SplitTimeDialogFragment splitDialog = SplitTimeDialogFragment.newInstance("Enter Split:");
+        String splitString = splitText.getText().toString();
+        SplitTimeDialogFragment splitDialog = SplitTimeDialogFragment.newInstance("Enter Split:",splitString);
         splitDialog.show(manager,"SplitTimeDialogFragment");
+//        splitDialog.setValue(splitString);
     }
 
     public void showTimeDialog(){
@@ -115,6 +114,6 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
 
     @Override
     public void sendInput(String time) {
-        splitText.setText(time);
+        ergSplit.parseTimeString(time);
     }
 }

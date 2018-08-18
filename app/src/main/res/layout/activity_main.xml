@@ -79,7 +79,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:inputType="time"
-        android:text="00:00.00"
+        android:text="1:00.00"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/calc_distance_button" />
 
