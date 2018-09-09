@@ -11,8 +11,9 @@ import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgDistance;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgSplit;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgTime;
 import io.github.vpaladino778.pacecalculator.Fragments.SplitTimeDialogFragment;
+import io.github.vpaladino778.pacecalculator.Fragments.TimeDialogFragment;
 
-public class MainActivity extends AppCompatActivity implements SplitTimeDialogFragment.OnInputListener{
+public class MainActivity extends AppCompatActivity implements SplitTimeDialogFragment.OnInputListener, TimeDialogFragment.OnInputListener{
 
     private EditText distanceText;
     private EditText splitText;
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
                 case R.id.et_split:
                     showSplitDialog();
                     break;
+                case R.id.et_time:
+                    showTimeDialog();
+                    break;
                 default:
                     break;
             }
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
 
         ergDistance = new ErgDistance(distanceText);
         ergSplit = new ErgSplit(splitText);
+        ergTime = new ErgTime(timeText);
 
         //Attach clickListener
         calcDistanceButton.setOnClickListener(onClickListener);
@@ -85,25 +90,27 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
         calcTimeButton.setOnClickListener(onClickListener);
         clearCalcButton.setOnClickListener(onClickListener);
         splitText.setOnClickListener(onClickListener);
+        timeText.setOnClickListener(onClickListener);
 
 
     }
 
     public void calcDistance(){
 
-}
+    }
 
     public void showSplitDialog(){
         FragmentManager manager = getFragmentManager();
         String splitString = splitText.getText().toString();
         SplitTimeDialogFragment splitDialog = SplitTimeDialogFragment.newInstance("Enter Split:",splitString);
         splitDialog.show(manager,"SplitTimeDialogFragment");
-//        splitDialog.setValue(splitString);
     }
 
     public void showTimeDialog(){
         FragmentManager manager = getFragmentManager();
-        //TODO: Implement showTimeDialog
+        String timeString = timeText.getText().toString();
+        TimeDialogFragment timeDialog = TimeDialogFragment.newInstance("Enter Time:",timeString);
+        timeDialog.show(manager,"timeDialogFragment");
     }
 
     public void clearCalculator(){
@@ -113,7 +120,12 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
     }
 
     @Override
-    public void sendInput(String time) {
+    public void sendSplit(String time) {
         ergSplit.parseTimeString(time);
+    }
+
+    @Override
+    public void sendTime(String time) {
+        ergTime.parseTimeString(time);
     }
 }

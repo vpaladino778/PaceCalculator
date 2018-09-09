@@ -146,7 +146,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:inputType="textPersonName"
-        android:text="00:00.00"
+        android:text="00:05:00.0 "
         app:layout_constraintEnd_toEndOf="@+id/et_split"
         app:layout_constraintTop_toBottomOf="@+id/calc_split_button" />
 

@@ -2,6 +2,7 @@
     <string name="app_name">PaceCalculator</string>
 
     <string name="split_dialog_title">Enter Split Value:</string>
+    <string name="time_dialog_title">Enter Time Value:</string>
     <string name="cancel">Cancel</string>
     <string name="ok">ok</string>
 
