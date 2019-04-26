@@ -10,6 +10,7 @@ import android.widget.EditText;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgDistance;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgSplit;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgTime;
+import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgUtilities;
 import io.github.vpaladino778.pacecalculator.Fragments.SplitTimeDialogFragment;
 import io.github.vpaladino778.pacecalculator.Fragments.TimeDialogFragment;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.calc_distance_button:
+                    calculateDistance();
                     break;
                 case R.id.calc_split_button:
                     break;
@@ -95,10 +97,6 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
 
     }
 
-    public void calcDistance(){
-
-    }
-
     public void showSplitDialog(){
         FragmentManager manager = getFragmentManager();
         String splitString = splitText.getText().toString();
@@ -127,5 +125,26 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
     @Override
     public void sendTime(String time) {
         ergTime.parseTimeString(time);
+    }
+
+    public void calculateDistance(){
+        if(ergTime == null || ergDistance == null || ergSplit == null){
+            //TODO: Error Handling
+            //Show error message
+        }
+
+        if(ergTime.getTotalTime() == 0 || ergSplit.getTotalSeconds() == 0){
+            //return error
+        }else {
+            ErgUtilities.calculateDistance(ergDistance, ergSplit, ergTime);
+        }
+    }
+
+    public void calculateSplit(){
+
+    }
+
+    public void calculateTime(){
+
     }
 }

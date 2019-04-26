@@ -34,3 +34,8 @@ output.json
 #NDK
 obj/
 .externalNativeBuild
+
+# Gradle files
+.gradle/
+build/
+build.gradle

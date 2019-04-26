@@ -115,14 +115,12 @@
         android:id="@+id/calc_time_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Calculate Time"
-        app:layout_constraintBottom_toTopOf="@+id/clear_calc_button"
         app:layout_constraintEnd_toEndOf="@+id/calc_split_button"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/calc_split_button"
-        app:layout_constraintTop_toBottomOf="@+id/calc_split_button" />
+        app:layout_constraintTop_toBottomOf="@+id/et_time" />
 
 
     <Button

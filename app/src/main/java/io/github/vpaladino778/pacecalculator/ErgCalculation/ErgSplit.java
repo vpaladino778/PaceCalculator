@@ -75,7 +75,7 @@ public class ErgSplit {
     }
 
     public void reset(){
-        setMinutes(1);
+        setMinutes(2);
         setSeconds(00.0);
         updateSplitText();
     }
