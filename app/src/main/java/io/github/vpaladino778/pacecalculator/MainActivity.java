@@ -3,9 +3,12 @@ package io.github.vpaladino778.pacecalculator;
 import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgDistance;
 import io.github.vpaladino778.pacecalculator.ErgCalculation.ErgSplit;
@@ -31,6 +34,13 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
     private ErgTime ergTime;
     private ErgDistance ergDistance;
 
+    // Calc Error Toasts
+    private Toast calcTimeErrorToast;
+    private Toast calcSplitErrorToast;
+    private Toast calcDistErrorToast;
+
+    private final int toastErrorDuration = Toast.LENGTH_SHORT;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,11 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
     }
 
 
+    /**
+     * A single click listener to describe all the actions
+     * of the click actions for buttons and dialogs in the
+     * main activity.
+     */
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -48,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
                     calculateDistance();
                     break;
                 case R.id.calc_split_button:
+                    calculateSplit();
                     break;
-
                 case R.id.calc_time_button:
+                    calculateTime();
                     break;
-
                 case R.id.clear_calc_button:
                     clearCalculator();
                     break;
@@ -76,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
         splitText = (EditText) findViewById(R.id.et_split);
         timeText = (EditText) findViewById(R.id.et_time);
 
-        //Buttons
+        // Buttons
         calcDistanceButton = (Button) findViewById(R.id.calc_distance_button);
         calcSplitButton = (Button) findViewById(R.id.calc_split_button);
         calcTimeButton = (Button) findViewById(R.id.calc_time_button);
@@ -86,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
         ergSplit = new ErgSplit(splitText);
         ergTime = new ErgTime(timeText);
 
-        //Attach clickListener
+        // Attach clickListener
         calcDistanceButton.setOnClickListener(onClickListener);
         calcSplitButton.setOnClickListener(onClickListener);
         calcTimeButton.setOnClickListener(onClickListener);
@@ -94,6 +109,11 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
         splitText.setOnClickListener(onClickListener);
         timeText.setOnClickListener(onClickListener);
 
+
+        // Toast Instantiations
+        calcTimeErrorToast = Toast.makeText(getApplicationContext(),R.string.calc_time_error_toast,toastErrorDuration);
+        calcSplitErrorToast = Toast.makeText(getApplicationContext(),R.string.calc_split_error_toast,toastErrorDuration);
+        calcDistErrorToast = Toast.makeText(getApplicationContext(),R.string.calc_dist_error_toast,toastErrorDuration);
 
     }
 
@@ -134,17 +154,36 @@ public class MainActivity extends AppCompatActivity implements SplitTimeDialogFr
         }
 
         if(ergTime.getTotalTime() == 0 || ergSplit.getTotalSeconds() == 0){
-            //return error
+            calcDistErrorToast.show();
         }else {
             ErgUtilities.calculateDistance(ergDistance, ergSplit, ergTime);
         }
     }
 
     public void calculateSplit(){
+        if(ergTime == null || ergDistance == null || ergSplit == null){
+            //TODO: Error Handling
+            //Show error message
+        }
+
+        if(ergTime.getTotalTime() == 0 || ergDistance.getMeters() == 0){
+            calcSplitErrorToast.show();
+        }else {
+            ErgUtilities.calculateSplit(ergDistance, ergSplit, ergTime);
+        }
 
     }
 
     public void calculateTime(){
+        if(ergTime == null || ergDistance == null || ergSplit == null){
+            //TODO: Error Handling
+            //Show error message
+        }
 
+        if(ergSplit.getTotalSeconds() == 0 || ergDistance.getMeters() == 0){
+            calcTimeErrorToast.show();
+        }else {
+            ErgUtilities.calculateTime(ergDistance, ergSplit, ergTime);
+        }
     }
 }

@@ -19,6 +19,14 @@ public class ErgTime {
     }
 
 
+    /**
+     * Recieves a time string and parses it to
+     * set the hours, minutes, and seconds variables in
+     * the EditText Object
+     * @param timeString The time string
+     *                   Example Time String: "0:00:00.0"
+     * @return True if the inputted string was valid, false if invalid
+     */
     public boolean parseTimeString(String timeString){
         String[] timeSplit = timeString.split(":"); // Splits (timeSplit[0]) minutes from seconds (timeSplit[1])
         //String[] secondsDecimal = timeSplit[2].split("\\."); //Splits 00.0 into 2 separate numbers
@@ -50,7 +58,10 @@ public class ErgTime {
     }
 
 
-    //Returns total time in minutes
+    /**
+     * Returns the total time in minutes
+     * @return The total time in minutes
+     */
     public double getTotalTime(){
         double decimalSeconds = getSeconds()/60;
         //Rounds seconds to 2 decimal places
